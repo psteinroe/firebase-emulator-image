@@ -3,9 +3,6 @@ name: Publish Docker image
 on:
   push:
     branches: [main]
-    paths:
-      - 'Dockerfile'
-      - 'firebase.json'
 
 jobs:
   push_to_registry:
@@ -27,7 +24,7 @@ jobs:
         with:
           images: steinroe/firebase-emulator
           tags: |
-            type=sha
+            type=ref,event=branch
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
